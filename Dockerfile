@@ -1,4 +1,4 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:1.120.4
 WORKDIR /usr/app
 COPY . /usr/app
 
