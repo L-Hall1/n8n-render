@@ -2,32 +2,28 @@ version: '3.8'
 
 services:
   n8n:
-    build: .
+    image: n8nio/n8n:1.120.4
     ports:
       - "5678:5678"
     environment:
       - N8N_ENFORCE_SETTINGS=true
       - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_HOST=ep-lingering-firefly-ag24l2a3-pooler.c-2.eu-central-1.aws.neon.tech
       - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_DATABASE=n8n
-      - DB_POSTGRESDB_USER=n8n
-      - DB_POSTGRESDB_PASSWORD=password
+      - DB_POSTGRESDB_DATABASE=neondb
+      - DB_POSTGRESDB_USER=neondb_owner
+      - DB_POSTGRESDB_PASSWORD=npg_6VOexn8bAHmc
+      - DB_POSTGRESDB_SSL=true
+      - DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=working66666777@gmail.com
+      - N8N_BASIC_AUTH_PASSWORD=GGGPokerok666!
+      - N8N_HOST=n8n-render-860h.onrender.com
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n-render-860h.onrender.com
     volumes:
       - n8n_data:/home/node/.n8n
-    depends_on:
-      - postgres
-
-  postgres:
-    image: postgres:15
-    restart: always
-    environment:
-      POSTGRES_USER: n8n
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: n8n
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   n8n_data:
-  postgres_data:
